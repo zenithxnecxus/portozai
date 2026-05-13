@@ -1,0 +1,180 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-sidebar: #0a0a0a;
+  --bg-main: #050505;
+  --bg-card: #111111;
+  --bg-card-hover: #161616;
+  --text-primary: #f0f0f0;
+  --text-secondary: #888888;
+  --text-muted: #444444;
+  --border-color: #1a1a1a;
+}
+
+/* ===== GLOBAL STYLES ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  font-family: 'Syne', 'Inter', system-ui, -apple-system, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Scrollbar kustom */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-sidebar);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--accent, #06b6d4);
+  border-radius: 2px;
+}
+
+/* Seleksi teks */
+::selection {
+  background: var(--accent-dim, rgba(6, 182, 212, 0.15));
+  color: var(--accent, #06b6d4);
+}
+
+/* Utility classes */
+.accent-color { color: var(--accent); }
+.accent-bg { background-color: var(--accent); }
+.accent-border { border-color: var(--accent); }
+.accent-bg-dim { background-color: var(--accent-dim); }
+
+.text-secondary { color: var(--text-secondary); }
+.text-muted-color { color: var(--text-muted); }
+
+.card-bg {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+}
+
+.card-bg:hover {
+  background-color: var(--bg-card-hover);
+  border-color: var(--accent-border);
+}
+
+/* Progress bar */
+.progress-bar {
+  height: 4px;
+  background: var(--border-color);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 2px;
+  transition: width 1s ease;
+}
+
+/* Grid pattern background */
+.grid-bg {
+  background-image: 
+    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Noise overlay */
+.noise::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  z-index: 9999;
+  pointer-events: none;
+}
+
+/* Animasi */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeInLeft {
+  from { opacity: 0; transform: translateX(-16px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes pulse-accent {
+  0%, 100% { box-shadow: 0 0 0 0 var(--accent-glow, rgba(6, 182, 212, 0.25)); }
+  50%       { box-shadow: 0 0 0 8px transparent; }
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+.animate-fade-in    { animation: fadeIn 0.5s ease forwards; }
+.animate-fade-left  { animation: fadeInLeft 0.5s ease forwards; }
+.animate-pulse-accent { animation: pulse-accent 2s ease infinite; }
+.cursor-blink { animation: blink 1s step-end infinite; }
+
+/* Staggered children */
+.stagger > *:nth-child(1) { animation-delay: 0.05s; opacity: 0; animation-fill-mode: forwards; animation-name: fadeIn; animation-duration: 0.5s; }
+.stagger > *:nth-child(2) { animation-delay: 0.10s; opacity: 0; animation-fill-mode: forwards; animation-name: fadeIn; animation-duration: 0.5s; }
+.stagger > *:nth-child(3) { animation-delay: 0.15s; opacity: 0; animation-fill-mode: forwards; animation-name: fadeIn; animation-duration: 0.5s; }
+.stagger > *:nth-child(4) { animation-delay: 0.20s; opacity: 0; animation-fill-mode: forwards; animation-name: fadeIn; animation-duration: 0.5s; }
+.stagger > *:nth-child(5) { animation-delay: 0.25s; opacity: 0; animation-fill-mode: forwards; animation-name: fadeIn; animation-duration: 0.5s; }
+.stagger > *:nth-child(6) { animation-delay: 0.30s; opacity: 0; animation-fill-mode: forwards; animation-name: fadeIn; animation-duration: 0.5s; }
+
+/* Page transition */
+.page-enter {
+  animation: fadeIn 0.4s ease forwards;
+}
+
+/* ===== BUTTON STYLES (tambahan) ===== */
+.btn-neon {
+  background: transparent;
+  border: 2px solid var(--accent);
+  border-radius: 8px;
+  padding: 12px 28px;
+  color: var(--accent);
+  font-weight: 600;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-neon:hover {
+  background: var(--accent);
+  color: #000;
+  box-shadow: 0 0 20px var(--accent);
+  transform: translateY(-2px);
+}
+
+.btn-gradient {
+  background: linear-gradient(135deg, var(--accent), #a855f7);
+  border: none;
+  border-radius: 40px;
+  padding: 12px 32px;
+  color: white;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-gradient:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px var(--accent);
+}

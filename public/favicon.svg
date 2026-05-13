@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <rect width="32" height="32" rx="6" fill="#0a0a0a"/>
+  <path d="M16 6 L26 12 L26 20 L16 26 L6 20 L6 12 Z" fill="none" stroke="#ff3333" stroke-width="1.5"/>
+  <text x="16" y="20" text-anchor="middle" font-family="monospace" font-size="10" font-weight="bold" fill="#ff3333">AZ</text>
+</svg>
